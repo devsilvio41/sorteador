@@ -1,0 +1,137 @@
+/* ==========================================================================
+   Projeto mobile first
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+html, body {
+    background: #000;
+    width: 100%;
+    height: 100vh; /* Garante exatamente a altura visível da tela */
+    overflow: hidden; /* Corta o conteúdo excedente e esconde as barras */
+    }
+
+:root {
+    --spacing-sm: 1rem;
+    /* 16px */
+    --spacing-md: 2rem;
+    /* 32px */
+    --spacing-lg: 4rem;
+    /* 64px */
+    --max-width-img: 583px;
+}
+
+/* ==========================================================================
+   Container da Imagem (Wrapper)
+   ========================================================================== */
+.sorteio-wrapper {
+    /* Centralização com Flexbox */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Espaçamento fluido (Mobile First) */
+    margin: var(--spacing-md) auto;
+    padding: 0 var(--spacing-sm);
+    width: 100%;
+}
+
+/* ==========================================================================
+   Elemento Imagem (Fluida e Responsiva)
+   ========================================================================== */
+.img-sorteio {
+/* Garante que a imagem nunca passe de 583px, mas encolha em telas menores */
+    width: 100%;
+    max-width: var(--max-width-img);
+    height: auto;
+    /* Mantém a proporção sem distorcer */
+    display: block;
+    object-fit: contain;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h2 {
+    color: #ffffff;
+    font-weight: 400;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 100%;
+    letter-spacing: 0px;
+}
+
+.box-input {
+    display: inline-flex;
+}
+.input-min {
+    background-color: #404040;
+    padding-left: 40px;
+    color: #ffffff;
+    margin-right: 30px;
+    width: 320px;
+    height: 40px;
+    border-radius: 14px;
+    border: none;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.input-min::placeholder {
+  color: #f5edc2;        /* Cor suave para o placeholder */
+  font-style: italic;      /* Estilo da fonte */
+  font-size: 18px;         /* Tamanho da fonta no placeholder */
+  font-weight: 400;        /* Peso da fonte */
+  opacity: 1;              /* Garante que a cor fique consistente no Firefox */
+}
+
+.input-max {
+    background-color: #404040;
+    padding-left: 40px;
+    color: #ffffff;
+    width: 320px;
+    height: 40px;
+    border-radius: 14px;
+    border: none;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.input-max::placeholder {
+  color: #f5edc2;       /* Cor suave para o placeholder */
+  font-style: italic;       /* Estilo da fonte */
+  font-size: 18px;         /* Tamanho da fonta no placeholder */
+  font-weight: 400;       /* Peso da fonte */
+  opacity: 1;             /* Garante que a cor fique consistente no Firefox */
+}
+
+button {
+    background-color: #63d323;
+    color: #ffffff;
+    margin-top: 69px;
+    margin-bottom: 187px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 342px;
+    height: 50px;
+    top: 858px;
+    left: 849px;
+    border-radius: 10px;
+    opacity: 1;
+    cursor: pointer;
+    /* Estilo do texto button */
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 2.5px;
+    letter-spacing: 0px;
+    text-align: center;
+    vertical-align: middle;
+
+}
