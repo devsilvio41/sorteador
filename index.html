@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
-<!-- MetaTags SEO -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Sorteador de Números | Sorteios Rápidos e Gratuitos</title>
+    <meta name="description" content="Sorteie números online de forma rápida, fácil e totalmente gratuita. Ideal para rifas, jogos, concursos, eventos e decisões de forma transparente.">
+    <meta name="keywords" content="sorteador de numeros, gerador de numeros, sorteio online, rifa online, sortear numero, sorteador aleatorio">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Dev Silvio">
     <link rel="canonical" href="https://devsilvio41.github.io/sorteador/">
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://devsilvio41.github.io/sorteador/">
     <meta property="og:title" content="Sorteador de Números Online - Sorteios Rápidos">
@@ -17,38 +25,33 @@
     <meta name="twitter:description" content="Sorteie números online de forma rápida e gratuita. Defina o intervalo e receba o resultado na hora!">
     <meta name="twitter:image" content="https://devsilvio41.github.io/sorteador/assets/og-image.jpg">
 
-    <title>Sorteador de Números | Sorteios Rápidos e Gratuitos</title>
-    <meta name="description" content="Sorteie números online de forma rápida, fácil e totalmente gratuita. Ideal para rifas, jogos, concursos, eventos e decisões de forma transparente.">
-    <meta name="keywords" content="sorteador de numeros, gerador de numeros, sorteio online, rifa online, sortear numero, sorteador aleatorio">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Dev Silvio">
-
-<!-- fim MetaTags SEO -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="./CSS/style.css" />
+    <script src="./JS/scripts.js" defer></script>
 </head>
 
 <body>
-    <figure class="sorteio-wrapper">
-        <img src="assets/sorteio.png" alt="Ilustração do sorteio" class="img-sorteio" width="583" height="374"
-            loading="lazy" />
-    </figure>
-    <main>
-        <h2>Sortear um número</h2><br />
-        <div class="box-input">
-            <input class="input-min" placeholder="Entre 0..." />
-            <input class="input-min" placeholder="e 999..." />
-        </div>
-        <button>Sortear</button>
-    </main>
 
+    <header>
+        <figure class="sorteio-wrapper">
+            <img src="./assets/sorteio.png" alt="Ilustração do sorteio" class="img-sorteio" width="583" height="374" loading="lazy" />
+        </figure>
+    </header>
+
+    <main>
+        <h2>Sortear um número</h2>
+        <p aria-live="polite" class="number-sorteado"></p>
+        
+        <div class="box-input">
+            <input class="input-min" type="" placeholder="entre" aria-label="Valor mínimo" />
+            <input class="input-max" type="" placeholder="e" aria-label="Valor máximo" />
+        </div>
+
+        <button type="button" class="btn-sortear" id="btn-primary">Sortear</button>
+    </main>
 </body>
-<script type="text/javascript" src="JS/scripts.js"></script>
 
 </html>
