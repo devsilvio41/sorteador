@@ -1,6 +1,19 @@
 /* ==========================================================================
-   Projeto mobile first
+   Variáveis e Reset Global
    ========================================================================== */
+:root {
+    --spacing-sm: 1rem;      /* 16px */
+    --spacing-md: 2rem;      /* 32px */
+    --spacing-lg: 4rem;      /* 64px */
+    --max-width-img: 583px;
+    
+    /* Cores adicionadas às variáveis para facilitar manutenção */
+    --color-bg: #000000;
+    --color-text: #ffffff;
+    --color-input-bg: #404040;
+    --color-placeholder: #f5edc2;
+    --color-btn: #63d323;
+}
 
 * {
     margin: 0;
@@ -10,128 +23,143 @@
 }
 
 html, body {
-    background: #000;
+    background-color: var(--color-bg);
     width: 100%;
-    height: 100vh; /* Garante exatamente a altura visível da tela */
-    overflow: hidden; /* Corta o conteúdo excedente e esconde as barras */
-    }
-
-:root {
-    --spacing-sm: 1rem;
-    /* 16px */
-    --spacing-md: 2rem;
-    /* 32px */
-    --spacing-lg: 4rem;
-    /* 64px */
-    --max-width-img: 583px;
+    /* Alterado de height fixo e overflow hidden para permitir rolagem no mobile */
+    min-height: 100vh; 
+    color: var(--color-text);
 }
 
 /* ==========================================================================
    Container da Imagem (Wrapper)
    ========================================================================== */
 .sorteio-wrapper {
-    /* Centralização com Flexbox */
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* Espaçamento fluido (Mobile First) */
     margin: var(--spacing-md) auto;
     padding: 0 var(--spacing-sm);
     width: 100%;
 }
 
-/* ==========================================================================
-   Elemento Imagem (Fluida e Responsiva)
-   ========================================================================== */
 .img-sorteio {
-/* Garante que a imagem nunca passe de 583px, mas encolha em telas menores */
     width: 100%;
     max-width: var(--max-width-img);
     height: auto;
-    /* Mantém a proporção sem distorcer */
     display: block;
     object-fit: contain;
 }
 
+/* ==========================================================================
+   Conteúdo Principal
+   ========================================================================== */
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 var(--spacing-sm); /* Impede que o conteúdo cole nas bordas */
 }
+
 h2 {
-    color: #ffffff;
     font-weight: 400;
     text-align: center;
-    font-size: 2rem;
-    line-height: 100%;
-    letter-spacing: 0px;
+    /* Utilizando clamp para fonte fluida: min 1.5rem, ideal 4vw, max 2rem */
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    line-height: 1.2;
+    margin-bottom: 29px;
 }
 
-.box-input {
-    display: inline-flex;
-}
-.input-min {
-    background-color: #404040;
-    padding-left: 40px;
-    color: #ffffff;
-    margin-right: 30px;
-    width: 320px;
-    height: 40px;
-    border-radius: 14px;
-    border: none;
-    opacity: 1;
-    cursor: pointer;
-}
-
-.input-min::placeholder {
-  color: #f5edc2;        /* Cor suave para o placeholder */
-  font-style: italic;      /* Estilo da fonte */
-  font-size: 18px;         /* Tamanho da fonta no placeholder */
-  font-weight: 400;        /* Peso da fonte */
-  opacity: 1;              /* Garante que a cor fique consistente no Firefox */
-}
-
-.input-max {
-    background-color: #404040;
-    padding-left: 40px;
-    color: #ffffff;
-    width: 320px;
-    height: 40px;
-    border-radius: 14px;
-    border: none;
-    opacity: 1;
-    cursor: pointer;
-}
-
-.input-max::placeholder {
-  color: #f5edc2;       /* Cor suave para o placeholder */
-  font-style: italic;       /* Estilo da fonte */
-  font-size: 18px;         /* Tamanho da fonta no placeholder */
-  font-weight: 400;       /* Peso da fonte */
-  opacity: 1;             /* Garante que a cor fique consistente no Firefox */
-}
-
-button {
-    background-color: #63d323;
-    color: #ffffff;
-    margin-top: 69px;
-    margin-bottom: 187px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 342px;
-    height: 50px;
-    top: 858px;
-    left: 849px;
-    border-radius: 10px;
-    opacity: 1;
-    cursor: pointer;
-    /* Estilo do texto button */
+.number-sorteado {
+    color: #63d323; /* Mesma cor de destaque do botão */
+    font-size: clamp(1rem, 6vw, 2.5rem); /* Fonte fluida e destacada */
     font-weight: 700;
-    font-size: 36px;
-    line-height: 2.5px;
-    letter-spacing: 0px;
     text-align: center;
-    vertical-align: middle;
+    margin-bottom: 20px;
+    min-height: 50px; /* Evita que o layout dê "pulos" quando o texto muda */
+    transition: transform 0.2s ease, color 0.2s ease;
+}
 
+/* ==========================================================================
+   Formulário / Inputs
+   ========================================================================== */
+.box-input {
+    display: flex;
+    flex-direction: column; /* MOBILE FIRST: Elementos empilhados */
+    align-items: center;
+    gap: 15px; /* Substitui as margens laterais */
+    width: 100%;
+    max-width: 342px; /* Limita o crescimento em telas médias */
+}
+
+/* Agrupamos os seletores para não repetir código (DRY) */
+.input-min, 
+.input-max {
+    background-color: var(--color-input-bg);
+    color: var(--color-text);
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%; /* Largura fluida em vez de 320px fixos */
+    height: 48px; /* Aumentado de 40px para 48px (Acessibilidade/Área de toque WCAG) */
+    border-radius: 14px;
+    border: none;
+    cursor: text; /* Semanticamente mais correto que 'pointer' para inputs */
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Foco acessível */
+.input-min:focus, 
+.input-max:focus {
+    box-shadow: 0 0 0 2px var(--color-btn);
+}
+
+.input-min::placeholder, 
+.input-max::placeholder {
+    color: var(--color-placeholder);
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 1;
+}
+
+/* ==========================================================================
+   Botão
+   ========================================================================== */
+button {
+    background-color: var(--color-btn);
+    color: var(--color-text);
+    margin-top: 30px;
+    margin-bottom: var(--spacing-lg); /* Reduzida a margem de 187px para telas pequenas */
+    width: 100%; /* Fluido */
+    max-width: 342px; /* Limite máximo do design original */
+    height: 56px; /* Aumentado levemente para mobile */
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 5vw, 2.25rem); /* Fonte adaptável */
+    text-align: center;
+    transition: filter 0.3s ease; /* Transição suave para hover */
+}
+
+button:hover {
+    filter: brightness(1.1);
+}
+
+@media (min-width: 768px) {
+    .box-input {
+        flex-direction: row;      /* Coloca os inputs lado a lado no Tablet/Desktop */
+        max-width: 680px;         /* Permite expandir na horizontal */
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .input-min,
+    .input-max {
+        width: 320px;             /* Largura fixa e igual para cada input no Desktop */
+    }
+
+    button {
+        width: 320px;             /* Mantém consistência visual com os inputs */
+    }
 }
